@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ws</title>
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>vue-resource实例</h1>
+    <button class="btn btn-primary" @click="get">GET</button>
+    <button class="btn btn-danger" @click="post">POST</button>
+    <button class="btn btn-info" @click="jsonp">JSONP</button>
+    <p>{{msg}}</p>
+  </div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: ''
+    },
+    http: {
+      root: 'http://localhost/github/vue-mall/'
+    },
+    methods: {
+      get: function () {
+        this.$http.get('package.json', {
+          params: {
+            userId: 101
+          },
+          headers: {
+            token: 'abcd'
+          }
+        }).then(res => {
+          this.msg = res.data;
+        }, err => {
+          this.msg = err.data;
+        });
+      },
+      post: function () {
+        this.$http.post('package.json', {
+          userId: 102
+        }, {
+          headers: {
+            access_token: 'abc'
+          }
+        }).then(res => {
+          this.msg = res.data;
+        }, err => {
+          this.msg = err.data;
+        });
+      },
+      jsonp: function () {
+        this.$http.jsonp('https://api.douban.com/v2/book/1220562').then(res => {
+          this.msg = res.data;
+        });
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
