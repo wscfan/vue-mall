@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>ws</title>
   <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="node_modules/vue/dist/vue.js"></script>
-  <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
 </head>
 <body>
   <div id="app">
@@ -42,7 +42,7 @@
       },
       post: function () {
         this.$http.post('package.json', {
-          userId: 102
+          userId: 102,
         }, {
           headers: {
             access_token: 'abc'
